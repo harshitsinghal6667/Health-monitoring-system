@@ -70,7 +70,7 @@ signinButton.addEventListener("click", (e) => {
         .then(() => {
           // Data saved successfully!
             alert("user  login");
-         // location.href = "http://127.0.0.1:5503/auth_firebase_cdn/admin.html";
+            location.href = "http://127.0.0.1:5503/admin.html";
         })
         .catch((error) => {
           //the write failed
