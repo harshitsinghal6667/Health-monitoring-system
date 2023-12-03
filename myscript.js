@@ -1,7 +1,15 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,signInWithRedirect,
+  getRedirectResult,
+  sendPasswordResetEmail,
+} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 // import { getDatabase } from "firebase/database";
 
@@ -26,7 +34,7 @@ const provider = new GoogleAuthProvider(app);
 
 let signinButton = document.getElementById("signin-button");
 let signupButton = document.getElementById("signup-button");
-let login = document.getElementById("googlelogin");
+let login = document.getElementById("googleLogin");
 // let reset = document.querySelector('#reset');
 
 // reset.addEventListener("click", function () {
@@ -106,20 +114,15 @@ signinButton.addEventListener("click", (e) => {
     });
 });
 
-login.addEventListener('click', (e) => {
-  signInWithRedirect(auth, provider);
-
-  getRedirectResult(auth)
+login.addEventListener("click", (e) => {
+  signInWithPopup(auth, provider)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access Google APIs.
+      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-
       // The signed-in user info.
       const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-      // .
-      location.href = "https://thingspeak.com/channels/2128269";
+      alert("user  login");
+      window.location.href = "https://thingspeak.com/channels/2128269";
     })
     .catch((error) => {
       // Handle Errors here.
