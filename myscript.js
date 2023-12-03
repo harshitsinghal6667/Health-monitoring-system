@@ -1,14 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  sendPasswordResetEmail,
-  signInWithPopup,
-} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult, sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
 import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
 // import { getDatabase } from "firebase/database";
 
@@ -114,19 +107,22 @@ signinButton.addEventListener("click", (e) => {
 });
 
 login.addEventListener('click', (e) => {
-  signInWithPopup(auth, provider)
+  signInWithRedirect(auth, provider);
+
+  getRedirectResult(auth)
     .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
+      // This gives you a Google Access Token. You can use it to access Google APIs.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
+
       // The signed-in user info.
       const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-      alert(user.displayName);
+    // IdP data available using getAdditionalUserInfo(result)
+      // ..
+      alert("Email  login")
       location.href = "https://thingspeak.com/channels/2128269";
-      
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -135,6 +131,5 @@ login.addEventListener('click', (e) => {
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
-      alert(errorMessage);
     });
-})
+});
