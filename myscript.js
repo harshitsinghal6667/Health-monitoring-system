@@ -118,8 +118,7 @@ login.addEventListener('click', (e) => {
       // The signed-in user info.
       const user = result.user;
     // IdP data available using getAdditionalUserInfo(result)
-      // ..
-      alert("Email  login")
+      // .
       location.href = "https://thingspeak.com/channels/2128269";
     })
     .catch((error) => {
