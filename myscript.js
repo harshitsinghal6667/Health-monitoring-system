@@ -70,7 +70,7 @@ signinButton.addEventListener("click", (e) => {
         .then(() => {
           // Data saved successfully!
             alert("user  login");
-            location.href = "http://127.0.0.1:5503/admin.html";
+          location.href = "https://thingspeak.com/channels/2128269";
         })
         .catch((error) => {
           //the write failed
