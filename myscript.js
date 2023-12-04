@@ -35,25 +35,7 @@ const provider = new GoogleAuthProvider(app);
 let signinButton = document.getElementById("signin-button");
 let signupButton = document.getElementById("signup-button");
 let login = document.getElementById("googleLogin");
-// let reset = document.querySelector('#reset');
-
-// reset.addEventListener("click", function () {
-
-//   let email = document.querySelector("#resetEmail");
-
-//   const auth = getAuth();
-//   sendPasswordResetEmail(auth, email)
-//     .then(() => {
-//       // Password reset email sent!
-//       // ..
-//       console.log("Password reset email sent!")
-//     })
-//     .catch((error) => {
-//       const errorCode = error.code;
-//       const errorMessage = error.message;
-//       // ..
-//     });
-// })
+let reset = document.getElementById("resetE");
 
 signupButton.addEventListener("click", (e) => {
   let name = document.getElementById("name").value;
@@ -121,7 +103,7 @@ login.addEventListener("click", (e) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       // The signed-in user info.
       const user = result.user;
-      alert("user  login");
+      alert("user login");
       window.location.href = "https://thingspeak.com/channels/2128269";
     })
     .catch((error) => {
@@ -135,3 +117,21 @@ login.addEventListener("click", (e) => {
       // ...
     });
 });
+
+ reset.addEventListener("click", (e) => {
+
+  let email = document.getElementById("email_reset").value;
+
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      // Password reset email sent!
+      // ..
+      alert("Password reset email sent!");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+      alert("error");
+    });
+})
