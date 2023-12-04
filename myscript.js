@@ -36,6 +36,7 @@ let signinButton = document.getElementById("signin-button");
 let signupButton = document.getElementById("signup-button");
 let login = document.getElementById("googleLogin");
 let reset = document.getElementById("resetE");
+let email = document.querySelector(".emailReset");
 
 signupButton.addEventListener("click", (e) => {
   let name = document.getElementById("name").value;
@@ -119,19 +120,17 @@ login.addEventListener("click", (e) => {
 });
 
  reset.addEventListener("click", (e) => {
-
-  let email = document.getElementById("email_reset").value;
-
-  sendPasswordResetEmail(auth, email)
+  sendPasswordResetEmail(auth, email.value)
     .then(() => {
       // Password reset email sent!
       // ..
-      alert("Password reset email sent!");
+      email = "";
+      alert("Password reset email sent!, check your email");
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
-      alert("error");
+      alert("error in reseting password");
     });
 })
