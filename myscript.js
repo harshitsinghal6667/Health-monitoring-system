@@ -83,7 +83,8 @@ signinButton.addEventListener("click", (e) => {
         .then(() => {
           // Data saved successfully!
             alert("user  login");
-          location.href = "https://thingspeak.com/channels/2128269";
+          location.href =
+            "https://thingspeak.com/channels/2128269/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15";
         })
         .catch((error) => {
           //the write failed
@@ -105,7 +106,7 @@ login.addEventListener("click", (e) => {
       // The signed-in user info.
       const user = result.user;
       alert("user login");
-      window.location.href = "https://thingspeak.com/channels/2128269";
+      window.location.href = "https://thingspeak.com/channels/2128269/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15";
     })
     .catch((error) => {
       // Handle Errors here.
